@@ -5,8 +5,8 @@ Todas reciben un DataFrame de pronósticos con columnas
 y el panel con los valores reales (unique_id, ds, y).
 
 MASE usa como escala, por cliente, el MAE del seasonal naive de 24 h dentro del bloque
-de entrenamiento (ds <= 2014-06-30): MASE < 1 significa que el modelo le gana al
-"mismo valor que ayer a esta hora".
+de entrenamiento (ds <= 2014-06-30). MASE < 1 indica un error menor que la escala
+estacional dentro de train; no demuestra que supere al seasonal naive en test.
 """
 
 from __future__ import annotations

@@ -68,6 +68,15 @@ def backtest(
         assert fc["ds"].min() == origin and fc["ds"].max() == origin + pd.Timedelta(hours=H - 1), \
             f"{origin}: el pronóstico no cubre exactamente [origin, origin + H - 1]"
         assert len(fc) == len(ids) * H, f"{origin}: filas duplicadas o faltantes"
+        assert not fc.duplicated(["unique_id", "ds"]).any(), f"{origin}: claves duplicadas"
+        assert fc.groupby("unique_id", observed=True).size().eq(H).all(), f"{origin}: horizonte por cliente incompleto"
+        assert fc["ds"].isin(pd.date_range(origin, periods=H, freq="h")).all(), f"{origin}: fechas fuera de la grilla horaria"
+        assert np.isfinite(fc["y_hat"]).all(), f"{origin}: pronósticos no finitos"
+        for c in ("q10", "q50", "q90"):
+            if c in fc:
+                assert np.isfinite(fc[c]).all(), f"{origin}: cuantiles no finitos"
+        if {"q10", "q50", "q90"} <= set(fc):
+            assert ((fc.q10 <= fc.q50) & (fc.q50 <= fc.q90)).all(), f"{origin}: cruce de cuantiles"
         fc = fc.copy()
         fc["origin"] = origin
         parts.append(fc)
@@ -225,7 +234,17 @@ def hardware() -> str:
     if torch.cuda.is_available():
         return torch.cuda.get_device_name(0)
     import platform
-    return f"CPU ({platform.processor() or platform.machine()})"
+    from pathlib import Path
+
+    try:
+        cpu = next(
+            line.split(":", 1)[1].strip()
+            for line in Path("/proc/cpuinfo").read_text().splitlines()
+            if line.startswith("model name")
+        )
+    except (OSError, StopIteration):
+        cpu = platform.processor() or platform.machine()
+    return f"CPU ({cpu})"
 
 
 def finish(name: str, fc: pd.DataFrame, panel: pd.DataFrame, scale: pd.Series | None = None,

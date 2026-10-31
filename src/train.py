@@ -53,6 +53,8 @@ class FitResult:
 def _forward(model, batch, with_future):
     if with_future:
         x, xf, y = batch
+        if model.training and hasattr(model, "forward_train"):
+            return model.forward_train(x, xf, y), y
         return model(x, xf), y
     x, y = batch
     return model(x), y

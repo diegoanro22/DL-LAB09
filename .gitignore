@@ -1,12 +1,40 @@
+# Entornos y archivos compilados de Python
 .venv/
+/venv/
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Cachés de herramientas y notebooks
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
 .ipynb_checkpoints/
 lightning_logs/
+
+# Configuración local; conservar las plantillas de ejemplo
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
 # datos crudos y derivados (se regeneran con src/data.py)
 data/*.zip
 data/*.txt
 data/*.parquet
-# salidas pesadas
-outputs/runs/**/*.ckpt
 data/hf_mirror/
+
+# Checkpoints de Lightning, logs de consola y resultados incompletos
+/outputs/runs/**/*.ckpt
+/outputs/runs/**/*.log
+/outputs/runs/**/*.partial.csv
+
+# Archivos temporales del editor de documentos y del sistema
+~$*
+.~lock.*#
+.DS_Store
+Thumbs.db
+
+# Se conservan los .pt usados para reanudar experimentos y los archivos de entrega:
+# notebooks, forecasts/*.parquet, results/*.json, runs/*.{csv,json}, tablas,
+# figuras, informes PDF/DOCX y archivos de dependencias fijadas.

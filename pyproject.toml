@@ -10,7 +10,7 @@ dependencies = [
     "holidays>=0.50",
     "matplotlib>=3.8",
     "seaborn>=0.13",
-    "torch>=2.7",
+    "torch>=2.9.1",
     "statsforecast>=2.0",
     "lightgbm>=4.3",
     "mlforecast>=0.13",
@@ -19,6 +19,9 @@ dependencies = [
     "ipykernel>=6.29",
     "nbstripout>=0.7",
 ]
+
+[project.optional-dependencies]
+entrega = ["nbformat>=5.10", "nbclient>=0.10", "python-docx>=1.2", "pypdf>=6"]
 
 [tool.uv]
 package = false

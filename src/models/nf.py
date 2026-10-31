@@ -52,6 +52,7 @@ def fit_nf(
     end: pd.Timestamp = VAL_END,
     history_start: pd.Timestamp | None = None,
     futr_exog: list[str] | None = None,
+    validation_step_size: int = 24,
 ):
     """Entrena un modelo de NeuralForecast. `make(**kw)` construye el modelo con los
     argumentos de entrenamiento que se le pasan (max_steps, early stopping, etc.).
@@ -60,14 +61,44 @@ def fit_nf(
     parámetros y memoria pico de GPU.
     """
     from neuralforecast import NeuralForecast
+    from pytorch_lightning.callbacks import Callback
+
+    if val_size and pd.Timestamp(end) > VAL_END:
+        raise ValueError("early stopping solo puede usar fechas anteriores al test")
+
+    class BestWeights(Callback):
+        """Restaurar el mínimo de validación sin guardar checkpoints por cada paso."""
+        def __init__(self):
+            self.best = float("inf")
+            self.state = None
+
+        def on_validation_end(self, trainer, pl_module):
+            if trainer.sanity_checking:
+                return
+            value = trainer.callback_metrics.get("ptl/val_loss")
+            if value is not None and float(value) < self.best:
+                self.best = float(value)
+                self.state = {k: v.detach().cpu().clone() for k, v in pl_module.state_dict().items()}
+
+    class ValidationStride(Callback):
+        """Train sigue a stride 1; validación usa los orígenes day-ahead diarios."""
+        def on_validation_start(self, trainer, pl_module):
+            self.training_stride = pl_module.step_size
+            pl_module.step_size = validation_step_size
+
+        def on_validation_end(self, trainer, pl_module):
+            pl_module.step_size = self.training_stride
 
     df = panel_z.loc[panel_z["ds"] <= end]
     if history_start is not None:
         df = df.loc[df["ds"] >= history_start]
     df = _with_calendar(df, futr_exog or [])
-    kw = dict(max_steps=max_steps, val_check_steps=val_check_steps,
+    kw = dict(max_steps=max_steps, val_check_steps=val_check_steps, num_sanity_val_steps=0,
               early_stop_patience_steps=patience if val_size else -1, **QUIET)
     model = make(**kw)
+    best_weights = BestWeights()
+    if val_size:
+        model.trainer_kwargs.setdefault("callbacks", []).extend([best_weights, ValidationStride()])
     nf = NeuralForecast(models=[model], freq="h")
     if torch.cuda.is_available():
         torch.cuda.reset_peak_memory_stats()
@@ -76,6 +107,8 @@ def fit_nf(
     fit_s = time.perf_counter() - t
 
     m = nf.models[0]
+    if best_weights.state is not None:
+        m.load_state_dict(best_weights.state)
     train_traj = pd.DataFrame(getattr(m, "train_trajectories", []), columns=["step", "train_loss"])
     valid_traj = pd.DataFrame(getattr(m, "valid_trajectories", []), columns=["step", "val_loss"])
     steps = int(train_traj["step"].max()) + 1 if len(train_traj) else max_steps
@@ -90,6 +123,7 @@ def fit_nf(
         "params_entrenables": n_train,
         "gpu_mem_pico_MB": torch.cuda.max_memory_allocated() / 2**20 if torch.cuda.is_available() else 0.0,
         "historia_desde": str(df["ds"].min()),
+        "validation_step_size": validation_step_size,
         "train_traj": train_traj,
         "valid_traj": valid_traj,
     }
