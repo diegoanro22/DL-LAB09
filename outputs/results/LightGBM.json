@@ -1,0 +1,24 @@
+{
+  "modelo": "LightGBM",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 24.734162179000123,
+  "familia": "Árboles",
+  "L": 168,
+  "estrategia": "recursiva",
+  "covariables": true,
+  "params_total": 305400,
+  "params_entrenables": 305400,
+  "train_s": 48.2478238700005,
+  "arboles": 600,
+  "config": {
+    "num_leaves": 255,
+    "n_estimators": 600,
+    "learning_rate": 0.05
+  },
+  "MAE": 59.511228818717605,
+  "RMSE": 526.2300851750709,
+  "WAPE": 0.07614654048133994,
+  "MAPE": 0.11169726483570686,
+  "MASE": 0.8673293795450068,
+  "MASE_navidad": 1.5783031091810522
+}

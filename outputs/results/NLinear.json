@@ -1,0 +1,22 @@
+{
+  "modelo": "NLinear",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 18.147092782999607,
+  "familia": "MLP y lineales",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "covariables": false,
+  "config": "NLinear_revin",
+  "normalizacion": "zscore+RevIN",
+  "params_total": 4058,
+  "params_entrenables": 4058,
+  "train_s": 172.41468438299853,
+  "val_MASE": 0.8778082728385925,
+  "gpu_mem_pico_MB": 205.0166015625,
+  "MAE": 65.60237101808355,
+  "RMSE": 610.0820262022747,
+  "WAPE": 0.08394035377117298,
+  "MAPE": 0.12679366448339077,
+  "MASE": 0.9132012125981813,
+  "MASE_navidad": 1.8265564070557783
+}

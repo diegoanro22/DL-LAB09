@@ -1,0 +1,19 @@
+{
+  "fit_s": 200.05660825300038,
+  "pasos": 1500,
+  "mejor_paso": 1500,
+  "params_total": 534043,
+  "params_entrenables": 534040,
+  "gpu_mem_pico_MB": 3516.220703125,
+  "historia_desde": "2012-01-01 00:00:00",
+  "nombre": "PatchTST_L336",
+  "familia": "PatchTST",
+  "L": 336,
+  "H": 24,
+  "meses_historia": 30,
+  "val_MAE_backtest": 71.3562865775574,
+  "val_MASE_backtest": 0.8344061223980354,
+  "inference_s_val92": 17.42890397500014,
+  "train_s_total": 200.05660825300038,
+  "train_s_por_paso": 0.13337107216866692
+}

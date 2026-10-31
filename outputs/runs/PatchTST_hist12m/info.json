@@ -1,0 +1,19 @@
+{
+  "fit_s": 88.20687507900038,
+  "pasos": 1500,
+  "mejor_paso": 1400,
+  "params_total": 466843,
+  "params_entrenables": 466840,
+  "gpu_mem_pico_MB": 1089.61962890625,
+  "historia_desde": "2013-06-24 00:00:00",
+  "nombre": "PatchTST_hist12m",
+  "familia": "PatchTST",
+  "L": 168,
+  "H": 24,
+  "meses_historia": 12,
+  "val_MAE_backtest": 73.68813942083749,
+  "val_MASE_backtest": 0.8797447793666563,
+  "inference_s_val92": 16.21094970300146,
+  "train_s_total": 88.20687507900038,
+  "train_s_por_paso": 0.05880458338600025
+}

@@ -1,0 +1,19 @@
+{
+  "fit_s": 95.49105862099896,
+  "pasos": 1500,
+  "mejor_paso": 1500,
+  "params_total": 466843,
+  "params_entrenables": 466840,
+  "gpu_mem_pico_MB": 1707.45556640625,
+  "historia_desde": "2012-01-01 00:00:00",
+  "nombre": "PatchTST_L168",
+  "familia": "PatchTST",
+  "L": 168,
+  "H": 24,
+  "meses_historia": 30,
+  "val_MAE_backtest": 71.46348218929039,
+  "val_MASE_backtest": 0.8568459874851447,
+  "inference_s_val92": 16.205528714999673,
+  "train_s_total": 95.49105862099896,
+  "train_s_por_paso": 0.06366070574733264
+}

@@ -1,0 +1,21 @@
+{
+  "modelo": "PatchTST",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 17.175390522999805,
+  "familia": "Atención",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "covariables": false,
+  "config": "PatchTST_p16",
+  "params_total": 466843,
+  "params_entrenables": 466840,
+  "train_s": 148.28624836600102,
+  "val_MASE": 0.8568459874851447,
+  "gpu_mem_pico_MB": 1814.2509765625,
+  "MAE": 60.51604591243915,
+  "RMSE": 525.8571594707538,
+  "WAPE": 0.07743223642515054,
+  "MAPE": 0.12111450178422943,
+  "MASE": 0.882311926544977,
+  "MASE_navidad": 1.6595684357417664
+}

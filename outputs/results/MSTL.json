@@ -1,0 +1,19 @@
+{
+  "modelo": "MSTL",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 434.96624798300036,
+  "familia": "Baseline (estadístico)",
+  "L": 1344,
+  "estrategia": "directa (modelo de estado)",
+  "covariables": false,
+  "params_total": null,
+  "params_entrenables": null,
+  "train_s": 0.0,
+  "nota": "se reajusta por cliente en cada origen; el tiempo está en inferencia",
+  "MAE": 65.82366943359375,
+  "RMSE": 571.2938232421875,
+  "WAPE": 0.08422351628541946,
+  "MAPE": 0.12599731981754303,
+  "MASE": 0.9167531132698059,
+  "MASE_navidad": 2.0664761066436768
+}

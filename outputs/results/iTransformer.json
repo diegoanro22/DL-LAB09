@@ -1,0 +1,21 @@
+{
+  "modelo": "iTransformer",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 16.308844091001447,
+  "familia": "Atención",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "covariables": false,
+  "config": "iTransformer_256",
+  "params_total": 1631256,
+  "params_entrenables": 1631256,
+  "train_s": 75.65557766099846,
+  "val_MASE": 0.8079002902662759,
+  "gpu_mem_pico_MB": 291.19580078125,
+  "MAE": 56.58839372133602,
+  "RMSE": 504.3241843692249,
+  "WAPE": 0.0724066785177932,
+  "MAPE": 0.11093622938074768,
+  "MASE": 0.808574097497639,
+  "MASE_navidad": 1.386156427894011
+}

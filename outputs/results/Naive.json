@@ -1,0 +1,18 @@
+{
+  "modelo": "Naive",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 12.965734409001016,
+  "familia": "Baseline",
+  "L": 1,
+  "estrategia": "directa (copia)",
+  "covariables": false,
+  "params_total": 0,
+  "params_entrenables": 0,
+  "train_s": 0.0,
+  "MAE": 315.4428405761719,
+  "RMSE": 2369.99658203125,
+  "WAPE": 0.40361928939819336,
+  "MAPE": 0.3751509189605713,
+  "MASE": 4.297812461853027,
+  "MASE_navidad": 4.274217128753662
+}

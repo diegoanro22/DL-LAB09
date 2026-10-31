@@ -1,0 +1,18 @@
+{
+  "modelo": "SeasonalNaive24",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 13.16287194600045,
+  "familia": "Baseline",
+  "L": 24,
+  "estrategia": "directa (copia)",
+  "covariables": false,
+  "params_total": 0,
+  "params_entrenables": 0,
+  "train_s": 0.0,
+  "MAE": 67.91515350341797,
+  "RMSE": 546.4887084960938,
+  "WAPE": 0.08689963817596436,
+  "MAPE": 0.14087745547294617,
+  "MASE": 1.0546892881393433,
+  "MASE_navidad": 2.313352108001709
+}

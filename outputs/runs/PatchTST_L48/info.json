@@ -1,0 +1,19 @@
+{
+  "fit_s": 39.02599071700024,
+  "pasos": 1500,
+  "mejor_paso": 1400,
+  "params_total": 418843,
+  "params_entrenables": 418840,
+  "gpu_mem_pico_MB": 585.677734375,
+  "historia_desde": "2012-01-01 00:00:00",
+  "nombre": "PatchTST_L48",
+  "familia": "PatchTST",
+  "L": 48,
+  "H": 24,
+  "meses_historia": 30,
+  "val_MAE_backtest": 72.05681164631164,
+  "val_MASE_backtest": 0.9440961824765509,
+  "inference_s_val92": 15.116543093001383,
+  "train_s_total": 39.02599071700024,
+  "train_s_por_paso": 0.026017327144666827
+}
