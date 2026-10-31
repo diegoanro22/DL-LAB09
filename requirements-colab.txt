@@ -1,0 +1,8 @@
+# Para Google Colab: torch, pandas, numpy, matplotlib y pyarrow ya vienen instalados.
+# Celda de instalación:  !pip install -q -r requirements-colab.txt
+holidays==0.107
+statsforecast==2.1.1
+lightgbm==4.7.0
+mlforecast==1.1.0
+neuralforecast==3.3.0
+chronos-forecasting==2.3.2
