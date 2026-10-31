@@ -1,0 +1,23 @@
+{
+  "modelo": "TCN",
+  "hardware": "CPU (AMD Ryzen AI 7 350 w/ Radeon 860M)",
+  "inference_s": 33.53981445700629,
+  "familia": "Convolucionales",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "covariables": true,
+  "params_total": 21689,
+  "params_entrenables": 21689,
+  "train_s": 209.26423151802737,
+  "pasos_seleccion": 250,
+  "pasos_final": 250,
+  "val_MASE": 1.3032099433290403,
+  "gpu_mem_pico_MB": 0.0,
+  "MAE": 100.35969123016262,
+  "RMSE": 854.8092033065836,
+  "WAPE": 0.12841347616279772,
+  "MAPE": 0.18656924285941962,
+  "MASE": 1.3334233020173387,
+  "MASE_navidad": 1.9707006129787257,
+  "validation_step_size": 24
+}

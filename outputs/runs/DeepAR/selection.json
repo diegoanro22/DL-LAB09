@@ -1,0 +1,30 @@
+{
+  "val_MASE": 2.2858548395979454,
+  "best_steps": 200,
+  "max_steps": 250,
+  "architecture": {
+    "batch_size": "16",
+    "valid_batch_size": "16",
+    "windows_batch_size": "64",
+    "inference_windows_batch_size": "128",
+    "learning_rate": "0.001",
+    "accelerator": "cpu",
+    "devices": "1",
+    "enable_checkpointing": "False",
+    "lstm_hidden_size": "32",
+    "lstm_n_layers": "1",
+    "trajectory_samples": "100",
+    "loss": "DistributionLoss()",
+    "valid_loss": "MAE()"
+  },
+  "futr_exog": [
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "is_holiday"
+  ],
+  "validation_step_size": 24
+}

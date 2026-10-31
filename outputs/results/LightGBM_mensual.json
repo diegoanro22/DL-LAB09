@@ -1,0 +1,21 @@
+{
+  "modelo": "LightGBM_mensual",
+  "hardware": "CPU (AMD Ryzen AI 7 350 w/ Radeon 860M)",
+  "inference_s": 25.45457758498378,
+  "familia": "Reentrenamiento",
+  "L": 168,
+  "estrategia": "mensual expandible",
+  "covariables": true,
+  "train_s": 270.9940935120394,
+  "params_total": 305400,
+  "params_entrenables": 305400,
+  "gpu_mem_pico_MB": 0.0,
+  "seleccion": "validación; configuración congelada antes de prueba",
+  "MAE": 59.52416149864495,
+  "RMSE": 527.2167752245571,
+  "WAPE": 0.07616309297112989,
+  "MAPE": 0.11072980500563964,
+  "MASE": 0.8680289709887536,
+  "MASE_navidad": 1.6157282628813137,
+  "params_referencia": "Conteo del modelo de diciembre, reconstruido con la misma configuración e historia hasta 2014-11-30; no se repite la evaluación de prueba."
+}

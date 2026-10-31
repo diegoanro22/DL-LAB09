@@ -1,0 +1,7 @@
+modelo,L,L_efectivo,val_MASE,fuente,train_s
+SeasonalNaive24,48,24,0.985478937625885,A: barrido_historia.csv; invariancia exacta para L>=24,0.0
+SeasonalNaive24,168,24,0.985478937625885,A: barrido_historia.csv; invariancia exacta para L>=24,0.0
+SeasonalNaive24,336,24,0.985478937625885,A: barrido_historia.csv; invariancia exacta para L>=24,0.0
+LightGBM,48,24,0.9518473415815359,"B CPU: mismos parámetros de A/historia, sin rezago 168",65.57552504600608
+LightGBM,168,168,0.8572823859672366,"A: barrido_historia.csv; rezagos fijos 1-24,168, L=336 no agrega features",37.14383061499939
+LightGBM,336,168,0.8572823859672366,"A: barrido_historia.csv; rezagos fijos 1-24,168, L=336 no agrega features",37.14383061499939

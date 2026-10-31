@@ -1,0 +1,27 @@
+[
+  {
+    "notebook": "main.ipynb",
+    "celdas_ejecutadas": 7,
+    "errores": 0
+  },
+  {
+    "notebook": "notebooks/05_rnn_seq2seq.ipynb",
+    "celdas_ejecutadas": 4,
+    "errores": 0
+  },
+  {
+    "notebook": "notebooks/06b_nhits_tcn_deepar_chronos.ipynb",
+    "celdas_ejecutadas": 5,
+    "errores": 0
+  },
+  {
+    "notebook": "notebooks/07b_experimentos.ipynb",
+    "celdas_ejecutadas": 5,
+    "errores": 0
+  },
+  {
+    "notebook": "notebooks/08_comparacion.ipynb",
+    "celdas_ejecutadas": 3,
+    "errores": 0
+  }
+]

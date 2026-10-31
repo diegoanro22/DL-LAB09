@@ -1,0 +1,19 @@
+{
+  "val_MASE": 1.4086541701088482,
+  "best_steps": 250,
+  "max_steps": 250,
+  "architecture": {
+    "batch_size": "16",
+    "valid_batch_size": "16",
+    "windows_batch_size": "64",
+    "inference_windows_batch_size": "128",
+    "learning_rate": "0.001",
+    "accelerator": "cpu",
+    "devices": "1",
+    "enable_checkpointing": "False",
+    "mlp_units": "[[64, 64], [64, 64], [64, 64]]",
+    "n_blocks": "[1, 1, 1]"
+  },
+  "futr_exog": [],
+  "validation_step_size": 1
+}

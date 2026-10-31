@@ -1,0 +1,23 @@
+{
+  "modelo": "NHITS",
+  "hardware": "CPU (AMD Ryzen AI 7 350 w/ Radeon 860M)",
+  "inference_s": 30.96176970700617,
+  "familia": "Convolucionales",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "covariables": false,
+  "params_total": 94626,
+  "params_entrenables": 94626,
+  "train_s": 83.49778596201213,
+  "pasos_seleccion": 250,
+  "pasos_final": 250,
+  "val_MASE": 1.4086541701088482,
+  "gpu_mem_pico_MB": 0.0,
+  "MAE": 96.0793942617772,
+  "RMSE": 765.2847424635107,
+  "WAPE": 0.12293669752804776,
+  "MAPE": 0.19749263349390134,
+  "MASE": 1.3532079896623121,
+  "MASE_navidad": 2.1497256981068,
+  "validation_step_size": 1
+}

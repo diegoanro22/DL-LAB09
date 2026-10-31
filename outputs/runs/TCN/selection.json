@@ -1,0 +1,30 @@
+{
+  "val_MASE": 1.3032099433290403,
+  "best_steps": 250,
+  "max_steps": 250,
+  "architecture": {
+    "batch_size": "16",
+    "valid_batch_size": "16",
+    "windows_batch_size": "64",
+    "inference_windows_batch_size": "128",
+    "learning_rate": "0.001",
+    "accelerator": "cpu",
+    "devices": "1",
+    "enable_checkpointing": "False",
+    "encoder_hidden_size": "32",
+    "context_size": "24",
+    "decoder_hidden_size": "32",
+    "dilations": "[1, 2, 4, 8, 16, 32]",
+    "kernel_size": "3"
+  },
+  "futr_exog": [
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos",
+    "is_holiday"
+  ],
+  "validation_step_size": 24
+}

@@ -1,0 +1,118 @@
+{
+  "statsforecast_equivalencia_exacta": true,
+  "clientes_equivalencia": 1,
+  "origenes_equivalencia": 92,
+  "normalizacion_hasta": "2014-06-30 23:00:00",
+  "modelos": [
+    {
+      "modelo": "ChronosBolt",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "DLinear",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "DeepAR",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "LSTM_AR",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "LSTM_Multi",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "LightGBM",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "LightGBM_mensual",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "MLP",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "MSTL",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "NHITS",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "NLinear",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "Naive",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "PatchTST",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "SeasonalNaive168",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "SeasonalNaive24",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "Seq2Seq",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "TCN",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "iTransformer",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "iTransformer_mensual",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "iTransformer_seed123",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "iTransformer_seed42",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "iTransformer_seed7",
+      "filas": 331200,
+      "origenes": 92
+    }
+  ]
+}

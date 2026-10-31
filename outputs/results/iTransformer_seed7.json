@@ -1,0 +1,21 @@
+{
+  "modelo": "iTransformer_seed7",
+  "hardware": "CPU (AMD Ryzen AI 7 350 w/ Radeon 860M)",
+  "inference_s": 12.90773411700502,
+  "familia": "Semillas",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "seed": 7,
+  "covariables": false,
+  "train_s": 106.11354287300492,
+  "params_total": 1631256,
+  "params_entrenables": 1631256,
+  "pasos": 200,
+  "gpu_mem_pico_MB": 0.0,
+  "MAE": 62.68064791113866,
+  "RMSE": 538.1874034252768,
+  "WAPE": 0.0802019195928596,
+  "MAPE": 0.13323252266949528,
+  "MASE": 0.9012551947316947,
+  "MASE_navidad": 1.7385218871986392
+}
