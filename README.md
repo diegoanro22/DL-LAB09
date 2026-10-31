@@ -14,7 +14,7 @@ uv run jupyter lab
 
 **Google Colab:**
 ```python
-!git clone <url-del-repo>
+!git clone https://github.com/diegoanro22/DL-LAB09.git
 %cd DL-LAB09
 !pip install -q -r requirements-colab.txt
 import sys; sys.path.insert(0, ".")
@@ -96,3 +96,62 @@ solo `hist` (filas con `ds < origin`) y pasarla a `B.backtest`.
 - `fit` se niega a usar la prueba para early stopping.
 - Métricas siempre en kWh. `finish()` guarda `outputs/forecasts/<modelo>.parquet`
   (`unique_id, ds, origin, modelo, y_hat`) y `outputs/results/<modelo>.json`.
+
+## Ejecución de la parte B y entrega completa
+
+Se agregan `src/models/rnn.py`, `src/run_cisco.py`, los notebooks 05/06b/07b/08,
+`main.ipynb`, tablas comparativas y el informe. El notebook final carga los artefactos
+guardados y permite **Restart & Run All** sin reentrenar.
+
+Entorno CPU reproducible (Python 3.12, PyTorch 2.9.1 CPU):
+
+```bash
+uv venv --python 3.12
+uv pip install --python .venv/bin/python -r requirements-cpu-lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
+bash scripts/run_all.sh
+```
+
+El script bloquea suspensión e inactividad con `systemd-inhibit` durante la
+ejecución y libera su bloqueo al terminar. También se puede ejecutar cada etapa:
+
+```bash
+.venv/bin/python -m src.run_cisco --stage rnn
+.venv/bin/python -m src.run_cisco --stage libraries
+.venv/bin/python -m src.run_cisco --stage chronos
+.venv/bin/python -m src.run_cisco --stage experiments
+.venv/bin/python -m src.run_cisco --stage verify
+.venv/bin/python -m src.run_cisco --stage report
+.venv/bin/python scripts/build_notebooks.py
+.venv/bin/python scripts/execute_notebooks.py
+```
+
+Cada etapa reutiliza resultados terminados; los experimentos de semillas esperan
+a que las tres librerías DL terminen para elegir el mejor DL entre A y B por MASE
+de validación. Los ajustes mensuales usan historia anterior a cada mes. Las
+semillas mantienen la misma arquitectura y presupuesto; no se eligen por test.
+
+Los modelos B se ejecutaron en **CPU AMD Ryzen AI 7 350**, no en Colab/T4.
+Se conservaron los 150 clientes y los 92 orígenes. Las recurrentes usan como
+máximo seis epochs y 50 batches de 128 ventanas por epoch, con muestras distintas
+reproducibles; los ensayos locales usan hasta cuatro epochs y 20 batches. N-HiTS,
+TCN y DeepAR usan hasta 250 pasos y un refit con el paso de mínimo loss de
+validación. Estos presupuestos acotados limitan la comparación de capacidad con A.
+Chronos usa la alternativa `amazon/chronos-bolt-small` y reordena sus cuantiles
+para evitar cruces. Sus pesos preentrenados pueden contener información de
+Electricity; no se afirma exclusión del preentrenamiento.
+
+Archivos de entrega:
+
+- `main.ipynb`: recorrido completo con salidas verificadas.
+- `outputs/forecasts/todos.parquet`: unión de pronósticos base y experimentales.
+- `outputs/tables/comparacion.csv`: métricas, parámetros, tiempos y hardware.
+- `outputs/tables/probabilistica.csv`: pinball y cobertura.
+- `outputs/runs/verification.json`: verificación de grillas y equivalencia exacta
+  con StatsForecast en los 92 orígenes de un cliente de control.
+- `informe/informe.docx` e `informe/informe.pdf`: informe de hasta cinco páginas.
+- `informe/investigacion.md`: investigación, fuentes y límites del protocolo.
+
+Para generar el informe y ejecutar notebooks se necesitan las dependencias de
+`entrega` y LibreOffice para convertir DOCX a PDF. El entorno CPU fijado ya incluye
+las dependencias Python de entrega. Los resultados heredados de Diego se
+conservan; los tiempos entre RTX 5070 y CPU no son una comparación controlada.
