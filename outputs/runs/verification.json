@@ -55,6 +55,26 @@
       "origenes": 92
     },
     {
+      "modelo": "NHITS_mensual",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "NHITS_seed123",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "NHITS_seed42",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
+      "modelo": "NHITS_seed7",
+      "filas": 331200,
+      "origenes": 92
+    },
+    {
       "modelo": "NLinear",
       "filas": 331200,
       "origenes": 92

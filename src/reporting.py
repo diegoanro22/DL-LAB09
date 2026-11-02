@@ -133,7 +133,7 @@ def build_tables_and_figures(panel, scale):
     ax.set_xlabel("Entrenamiento + inferencia (s, log)")
     ax.set_ylabel("MASE prueba")
     ax.set_ylim(bottom=0.35)
-    ax.set_title("Precisión y tiempo medido; equipos y presupuestos diferentes")
+    ax.set_title("MASE de prueba contra tiempo de entrenamiento e inferencia")
     ax.legend(fontsize=7)
     ax.grid(alpha=0.2)
     chart("pareto")
@@ -153,7 +153,7 @@ def build_tables_and_figures(panel, scale):
     ax.set_ylabel("MAE (kWh)")
     ax.set_xticks([1, 6, 12, 18, 24])
     ax.set_title(
-        "Error por horizonte: comparación descriptiva con distintas arquitecturas"
+        "MAE de prueba por paso del horizonte"
     )
     ax.legend(ncol=3, fontsize=7)
     ax.grid(alpha=0.2)
@@ -169,6 +169,10 @@ def build_tables_and_figures(panel, scale):
     for name, g in hist.groupby("modelo"):
         g = g.sort_values("meses_historia")
         ax.plot(g.meses_historia, g.val_MASE, "o-", label=name)
+    chronos_val = D.ROOT / "outputs" / "runs" / "experimentos_B" / "chronos_val.json"
+    if chronos_val.exists():
+        cv = json.loads(chronos_val.read_text())["val_MASE"]
+        ax.axhline(cv, color="black", ls="--", lw=1, label=f"Chronos zero-shot ({cv:.3f})")
     ax.set_xlabel("Meses de historia")
     ax.set_ylabel("MASE validación")
     ax.set_xticks([3, 12, 30])

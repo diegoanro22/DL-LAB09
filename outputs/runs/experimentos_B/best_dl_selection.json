@@ -1,27 +1,33 @@
 {
   "criterio": "MASE validación, todas las familias A y B",
   "mejor": {
-    "modelo": "iTransformer",
+    "modelo": "NHITS",
     "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
-    "inference_s": 16.308844091001447,
-    "familia": "Atención",
+    "inference_s": 11.983267244999297,
+    "familia": "Convolucionales",
     "L": 168,
     "estrategia": "multi-salida",
     "covariables": false,
-    "config": "iTransformer_256",
-    "params_total": 1631256,
-    "params_entrenables": 1631256,
-    "train_s": 75.65557766099846,
-    "val_MASE": 0.8079002902662759,
-    "gpu_mem_pico_MB": 291.19580078125,
-    "MAE": 56.58839372133602,
-    "RMSE": 504.3241843692249,
-    "WAPE": 0.0724066785177932,
-    "MAPE": 0.11093622938074768,
-    "MASE": 0.808574097497639,
-    "MASE_navidad": 1.386156427894011
+    "params_total": 2817570,
+    "params_entrenables": 2817570,
+    "train_s": 36.22452499700012,
+    "pasos_seleccion": 1500,
+    "pasos_final": 1500,
+    "val_MASE": 0.7989026611705128,
+    "validation_step_size": 24,
+    "gpu_mem_pico_MB": 1217.3740234375,
+    "MAE": 56.26422083662647,
+    "RMSE": 493.82672427611243,
+    "WAPE": 0.07199188883560259,
+    "MAPE": 0.1048301982687758,
+    "MASE": 0.815663903814208,
+    "MASE_navidad": 1.5242147343864587
   },
   "candidatos": [
+    {
+      "modelo": "NLinear",
+      "val_MASE": 0.8778082728385925
+    },
     {
       "modelo": "DLinear",
       "val_MASE": 0.8797428607940674
@@ -29,10 +35,6 @@
     {
       "modelo": "MLP",
       "val_MASE": 0.8200646042823792
-    },
-    {
-      "modelo": "NLinear",
-      "val_MASE": 0.8778082728385925
     },
     {
       "modelo": "PatchTST",
@@ -44,27 +46,27 @@
     },
     {
       "modelo": "LSTM_AR",
-      "val_MASE": 1.9573076963424683
+      "val_MASE": 1.1447184085845947
     },
     {
       "modelo": "LSTM_Multi",
-      "val_MASE": 1.5011836290359497
+      "val_MASE": 0.9884216785430908
     },
     {
       "modelo": "Seq2Seq",
-      "val_MASE": 1.6096484661102295
+      "val_MASE": 1.008540153503418
     },
     {
       "modelo": "NHITS",
-      "val_MASE": 1.4086541701088482
+      "val_MASE": 0.7989026611705128
     },
     {
       "modelo": "TCN",
-      "val_MASE": 1.3032099433290403
+      "val_MASE": 0.8114736183170983
     },
     {
       "modelo": "DeepAR",
-      "val_MASE": 2.2858548395979454
+      "val_MASE": 1.3094610615770164
     }
   ]
 }

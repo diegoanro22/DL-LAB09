@@ -1,0 +1,21 @@
+{
+  "modelo": "NHITS_seed7",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 12.394872221999321,
+  "familia": "Semillas",
+  "L": 168,
+  "estrategia": "multi-salida",
+  "seed": 7,
+  "covariables": false,
+  "train_s": 18.225615167000797,
+  "params_total": 2817570,
+  "params_entrenables": 2817570,
+  "pasos": 1500,
+  "gpu_mem_pico_MB": 1218.654296875,
+  "MAE": 55.04461472113197,
+  "RMSE": 482.664813106901,
+  "WAPE": 0.07043136339715655,
+  "MAPE": 0.10247482834115766,
+  "MASE": 0.8011319127125468,
+  "MASE_navidad": 1.4870191796778904
+}

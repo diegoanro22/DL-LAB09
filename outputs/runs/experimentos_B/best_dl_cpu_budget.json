@@ -1,16 +1,28 @@
 {
-  "modelo": "iTransformer",
-  "steps": 200,
-  "selection_s": 100.05402029899415,
+  "modelo": "NHITS",
+  "steps": 1500,
   "architecture": {
-    "n_series": 150,
-    "hidden_size": 256,
-    "n_heads": 8,
-    "e_layers": 3,
-    "d_ff": 512,
-    "dropout": 0.1,
-    "learning_rate": 0.0005
+    "mlp_units": [
+      [
+        512,
+        512
+      ],
+      [
+        512,
+        512
+      ],
+      [
+        512,
+        512
+      ]
+    ],
+    "n_blocks": [
+      1,
+      1,
+      1
+    ],
+    "learning_rate": 0.001
   },
-  "windows_batch_size": 32,
-  "hardware": "CPU (x86_64)"
+  "windows_batch_size": 1024,
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU"
 }

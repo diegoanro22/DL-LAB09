@@ -1,17 +1,17 @@
 {
-  "val_MASE": 2.2858548395979454,
-  "best_steps": 200,
-  "max_steps": 250,
+  "val_MASE": 1.3094610615770164,
+  "best_steps": 1400,
+  "max_steps": 1500,
   "architecture": {
-    "batch_size": "16",
-    "valid_batch_size": "16",
-    "windows_batch_size": "64",
-    "inference_windows_batch_size": "128",
+    "batch_size": "32",
+    "valid_batch_size": "32",
+    "windows_batch_size": "1024",
+    "inference_windows_batch_size": "1024",
     "learning_rate": "0.001",
-    "accelerator": "cpu",
+    "accelerator": "cuda",
     "devices": "1",
     "enable_checkpointing": "False",
-    "lstm_hidden_size": "32",
+    "lstm_hidden_size": "128",
     "lstm_n_layers": "1",
     "trajectory_samples": "100",
     "loss": "DistributionLoss()",
@@ -25,6 +25,5 @@
     "month_sin",
     "month_cos",
     "is_holiday"
-  ],
-  "validation_step_size": 24
+  ]
 }

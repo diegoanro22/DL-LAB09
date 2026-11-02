@@ -1,0 +1,7 @@
+{
+  "modelo": "ChronosBolt",
+  "model_id": "amazon/chronos-bolt-small",
+  "periodo": "validación jul-sep 2014",
+  "val_MASE": 0.8152679204940796,
+  "val_MAE": 65.31378936767578
+}

@@ -31,7 +31,10 @@ CLASSES = {
 }
 CPU = not torch.cuda.is_available()
 DEVICE = "cpu" if CPU else "cuda"
-EPOCHS, BATCHES, BATCH_SIZE = (6, 50, 128) if CPU else (15, 200, 512)
+EPOCHS, BATCHES, BATCH_SIZE = (6, 50, 128) if CPU else (15, 1000, 512)
+# En GPU se usa el mismo presupuesto que los modelos de la parte A.
+HIDDENS = (24, 48) if CPU else (64, 128)
+NF_STEPS, NF_CHECK, NF_PATIENCE = (250, 50, 3) if CPU else (1500, 100, 5)
 
 
 def write_json(path, data):
@@ -149,7 +152,7 @@ def recurrentes(panel, scaler, scale):
         if (B.RESULTS_DIR / f"{family}.json").exists():
             continue
         candidates = [
-            select_rnn(panel, scaler, scale, family, hidden=h) for h in (24, 48)
+            select_rnn(panel, scaler, scale, family, hidden=h) for h in HIDDENS
         ]
         best = min(candidates, key=lambda r: r.info["val_MASE"])
         info = best.info
@@ -184,7 +187,7 @@ def recurrentes(panel, scaler, scale):
                 json.loads(
                     (RUNS / f"{family}_h{h}_L168_m30_s42" / "info.json").read_text()
                 )["train_s_total"]
-                for h in (24, 48)
+                for h in HIDDENS
             )
             + ri["refit_s"],
             val_MASE=info["val_MASE"],
@@ -210,28 +213,29 @@ def libraries(panel, scaler, scale):
             continue
         torch.manual_seed(42)
         extra = {
-            "batch_size": 16,
-            "valid_batch_size": 16,
-            "windows_batch_size": 64,
-            "inference_windows_batch_size": 128,
+            "batch_size": 16 if CPU else 32,
+            "valid_batch_size": 16 if CPU else 32,
+            "windows_batch_size": 64 if CPU else 1024,
+            "inference_windows_batch_size": 128 if CPU else 1024,
             "learning_rate": 1e-3,
             "accelerator": DEVICE,
             "devices": 1,
             "enable_checkpointing": False,
         }
         if family == "NHITS":
-            extra.update(mlp_units=[[64, 64]] * 3, n_blocks=[1, 1, 1])
+            w = 64 if CPU else 512
+            extra.update(mlp_units=[[w, w]] * 3, n_blocks=[1, 1, 1])
         elif family == "TCN":
             extra.update(
-                encoder_hidden_size=32,
+                encoder_hidden_size=32 if CPU else 128,
                 context_size=24,
-                decoder_hidden_size=32,
+                decoder_hidden_size=32 if CPU else 128,
                 dilations=[1, 2, 4, 8, 16, 32],
                 kernel_size=3,
             )
         else:
             extra.update(
-                lstm_hidden_size=32,
+                lstm_hidden_size=32 if CPU else 128,
                 lstm_n_layers=1,
                 trajectory_samples=100,
                 loss=DistributionLoss(distribution="Normal", level=[80]),
@@ -250,9 +254,10 @@ def libraries(panel, scaler, scale):
                 **kw,
             )
 
-        steps = 250 if CPU else 1500
+        steps = NF_STEPS
         nf, info = fit_nf(
-            make, z, max_steps=steps, val_check_steps=50, patience=3, futr_exog=futr
+            make, z, max_steps=steps, val_check_steps=NF_CHECK, patience=NF_PATIENCE,
+            futr_exog=futr,
         )
         best_steps = max(1, info["mejor_paso"])
         out = RUNS / family
@@ -698,7 +703,7 @@ def best_dl_experiments(panel, scaler, scale, rnn_infos):
             )
         return
     # En A, iTransformer es el mejor DL en validación. Mantener su arquitectura.
-    from neuralforecast.models import PatchTST, iTransformer
+    from neuralforecast.models import NHITS, PatchTST, iTransformer
 
     from src.models.nf import fit_nf, nf_forecast_fn
 
@@ -726,6 +731,10 @@ def best_dl_experiments(panel, scaler, scale, rnn_infos):
             "revin": True,
             "learning_rate": 5e-4,
         }
+    elif family == "NHITS":
+        cls = NHITS
+        w = 64 if CPU else 512
+        architecture = {"mlp_units": [[w, w]] * 3, "n_blocks": [1, 1, 1], "learning_rate": 1e-3}
     else:
         raise ValueError(
             f"Agregar arquitectura seleccionada para semillas/reentrenamiento: {family}"
@@ -737,9 +746,9 @@ def best_dl_experiments(panel, scaler, scale, rnn_infos):
             input_size=168,
             scaler_type="identity",
             random_seed=seed,
-            batch_size=16,
-            windows_batch_size=32,
-            inference_windows_batch_size=32,
+            batch_size=16 if CPU else 32,
+            windows_batch_size=32 if CPU else 1024,
+            inference_windows_batch_size=32 if CPU else 1024,
             accelerator=DEVICE,
             devices=1,
             enable_checkpointing=False,
@@ -749,6 +758,12 @@ def best_dl_experiments(panel, scaler, scale, rnn_infos):
 
     z = scaler.transform(panel.loc[panel.ds <= D.VAL_END])
     cfg_path = out / "best_dl_cpu_budget.json"
+    if family == "NHITS" and not cfg_path.exists():
+        # N-HiTS ya pasó por selección con validación en libraries(): se reutilizan sus pasos.
+        sel = json.loads((RUNS / "NHITS" / "selection.json").read_text())
+        write_json(cfg_path, {"modelo": family, "steps": sel["best_steps"],
+                              "architecture": architecture, "windows_batch_size": 1024,
+                              "hardware": B.hardware()})
     if cfg_path.exists():
         selected = json.loads(cfg_path.read_text())
     else:

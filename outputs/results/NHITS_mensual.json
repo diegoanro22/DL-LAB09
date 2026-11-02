@@ -1,0 +1,20 @@
+{
+  "modelo": "NHITS_mensual",
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "inference_s": 11.66849540199837,
+  "familia": "Reentrenamiento",
+  "L": 168,
+  "estrategia": "mensual expandible",
+  "covariables": false,
+  "train_s": 56.99857799700112,
+  "params_total": 2817570,
+  "params_entrenables": 2817570,
+  "pasos": 1500,
+  "gpu_mem_pico_MB": 1288.201171875,
+  "MAE": 55.75074348889352,
+  "RMSE": 491.97867993769444,
+  "WAPE": 0.07133487797527399,
+  "MAPE": 0.10390509410149885,
+  "MASE": 0.8098829183322679,
+  "MASE_navidad": 1.5187087206917078
+}

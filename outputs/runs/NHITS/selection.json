@@ -1,19 +1,18 @@
 {
-  "val_MASE": 1.4086541701088482,
-  "best_steps": 250,
-  "max_steps": 250,
+  "val_MASE": 0.7989026611705128,
+  "best_steps": 1500,
+  "max_steps": 1500,
   "architecture": {
-    "batch_size": "16",
-    "valid_batch_size": "16",
-    "windows_batch_size": "64",
-    "inference_windows_batch_size": "128",
+    "batch_size": "32",
+    "valid_batch_size": "32",
+    "windows_batch_size": "1024",
+    "inference_windows_batch_size": "1024",
     "learning_rate": "0.001",
-    "accelerator": "cpu",
+    "accelerator": "cuda",
     "devices": "1",
     "enable_checkpointing": "False",
-    "mlp_units": "[[64, 64], [64, 64], [64, 64]]",
+    "mlp_units": "[[512, 512], [512, 512], [512, 512]]",
     "n_blocks": "[1, 1, 1]"
   },
-  "futr_exog": [],
-  "validation_step_size": 1
+  "futr_exog": []
 }
